@@ -1,0 +1,29 @@
+:root {
+  --green: #2db400;
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.fontSm {
+  font-size: 18px;
+}
+.fontMedium {
+  font-size: 24px;
+}
+.fontL {
+  font-size: 36px;
+}
+.fontXl {
+  font-size: 48px;
+}
+.fontXxl {
+  font-size: 56px;
+}
+.font600 {
+  font-weight: 600;
+}
