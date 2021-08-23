@@ -1,0 +1,37 @@
+form {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.todoForm {
+  border: none;
+  border-bottom: 1px solid gray;
+  margin: 8px 10px;
+  width: 70%;
+}
+.todoBtn {
+  background-color: var(--green-trans);
+  border-radius: 18px;
+  color: white;
+  padding: 6px 30px;
+  margin: 15px 0;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.todoBtn:hover {
+  background-color: var(--green);
+}
+.todo-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+.todo-container span {
+  margin-right: 10px;
+}
+.todo {
+  display: inline;
+  position: absolute;
+}

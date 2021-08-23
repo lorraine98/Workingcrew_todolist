@@ -1,5 +1,6 @@
 :root {
   --green: #2db400;
+  --green-trans: #96da80;
 }
 * {
   box-sizing: border-box;
