@@ -16,7 +16,7 @@ export default function TodoList({ $target, initialState }) {
                     ({ text }) => `
                   <ul class="todo-container fontMedium">
                     <div>
-                      <span class="material-icons-outlined"> radio_button_unchecked </span>
+                      <span class="material-icons-outlined toggleBtn"> radio_button_unchecked </span>
                       <li class="todo">${text}</li>
                     </div>
                     <div>
@@ -32,3 +32,10 @@ export default function TodoList({ $target, initialState }) {
 
   this.render();
 }
+
+// function drawLine(e) {
+
+// }
+
+// const toggleBtn = document.querySelector(".toggleBtn");
+// toggleBtn.addEventListener("toggle", drawLine);

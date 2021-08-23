@@ -2,6 +2,7 @@ form {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  margin-bottom: 20px;
 }
 .todoForm {
   border: none;
@@ -27,10 +28,16 @@ form {
   align-items: center;
   justify-content: space-between;
   position: relative;
+  margin-bottom: 12px;
 }
 .todo-container span {
   margin-right: 10px;
   color: gray;
+  transition: color 0.3s;
+}
+.todo-container span:hover {
+  color: var(--green);
+  cursor: pointer;
 }
 .todo {
   display: inline;
@@ -40,5 +47,5 @@ form {
   color: var(--green);
   display: flex;
   justify-content: space-between;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
