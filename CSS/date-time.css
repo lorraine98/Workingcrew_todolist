@@ -1,26 +1,13 @@
-html,
-body {
-  height: 100%;
-}
-html {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-body {
-  width: 960px;
-  height: 720px;
-  border: 1px solid black;
-}
-
-.date_time {
+.date-time {
   display: flex;
   justify-content: space-between;
   color: gray;
 }
 .date {
   display: flex;
+}
+.date span {
+  padding-right: 5px;
 }
 .date__middle {
   display: flex;

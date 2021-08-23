@@ -5,4 +5,20 @@
 
 @import "./reset.css";
 @import "./global.css";
-@import "./todolist.css";
+@import "./date-time.css";
+
+html,
+body {
+  height: 100%;
+}
+html {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  width: 960px;
+  height: 720px;
+  border: 1px solid black;
+}
