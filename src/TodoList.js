@@ -11,10 +11,10 @@ export default function TodoList({ $target, initialState }) {
 
   this.render = () => {
     $todoList.innerHTML = `
-            <ul class="todo-container fontMedium">
                 ${this.state
                   .map(
                     ({ text }) => `
+                  <ul class="todo-container fontMedium">
                     <div>
                       <span class="material-icons-outlined"> radio_button_unchecked </span>
                       <li class="todo">${text}</li>
@@ -23,10 +23,10 @@ export default function TodoList({ $target, initialState }) {
                       <span class="material-icons-outlined"> edit </span>
                       <span class="material-icons-outlined"> delete </span>
                     </div>
+                  </ul>
                 `
                   )
                   .join("")}
-            </ul>
         `;
   };
 

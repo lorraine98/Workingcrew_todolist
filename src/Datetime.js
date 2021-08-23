@@ -35,7 +35,7 @@ function getCurrentDateTime() {
     date: convertToZeroPad(today.getDate()),
     day: new Intl.DateTimeFormat("en-US", { weekday: "short" }).format(today),
     hours: today.getHours(),
-    minutes: today.getMinutes(),
+    minutes: (today.getMinutes() < 10 ? "0" : "") + today.getMinutes(),
   };
   return currentDateTime;
 }

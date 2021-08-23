@@ -13,7 +13,7 @@ form {
   background-color: var(--green-trans);
   border-radius: 18px;
   color: white;
-  padding: 6px 30px;
+  padding: 8px 30px;
   margin: 15px 0;
   border: none;
   cursor: pointer;
@@ -30,8 +30,15 @@ form {
 }
 .todo-container span {
   margin-right: 10px;
+  color: gray;
 }
 .todo {
   display: inline;
   position: absolute;
+}
+.counter {
+  color: var(--green);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 60px;
 }
