@@ -8,7 +8,7 @@ export default function TodoForm({ $target, onSubmit }) {
   this.render = () => {
     $form.innerHTML = `
         <input class="todoForm fontMedium" type="text" name="todo" />
-        <button class="todoBtn">ADD</button>
+        <button class="todoBtn font600">ADD</button>
       `;
 
     if (!isInit) {

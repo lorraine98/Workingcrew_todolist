@@ -18,6 +18,7 @@ export default function App({ $target, initialState }) {
   new TodoForm({
     $target,
     onSubmit: (text) => {
+      console.log("todoList: ", todoList);
       const nextState = [
         ...todoList.state,
         {

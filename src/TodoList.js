@@ -1,3 +1,5 @@
+import TodoItem from "./TodoItem.js";
+
 export default function TodoList({ $target, initialState }) {
   const $todoList = document.createElement("div");
   $target.appendChild($todoList);
@@ -33,9 +35,4 @@ export default function TodoList({ $target, initialState }) {
   this.render();
 }
 
-// function drawLine(e) {
 
-// }
-
-// const toggleBtn = document.querySelector(".toggleBtn");
-// toggleBtn.addEventListener("toggle", drawLine);
