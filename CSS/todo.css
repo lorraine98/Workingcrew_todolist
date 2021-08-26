@@ -52,3 +52,13 @@ form {
 .line {
   text-decoration: line-through;
 }
+.warning-container {
+  display: flex;
+  justify-content: center;
+}
+.warning {
+  font-size: 3rem;
+  color: gray;
+  opacity: 0.3;
+  margin-top: 120px;
+}

@@ -38,6 +38,10 @@ export default function TodoList({ $target, initialState, toggleTodo }) {
 
   this.render = () => {
     const { todos } = this.state;
+    if (todos.length === 0) {
+      $todoList.innerHTML = `<div class="warning-container"><span class="warning font600">할 일을 추가해주세요</span></div>`;
+      return;
+    }
     $todoList.innerHTML = `
                 ${todos
                   .map(
