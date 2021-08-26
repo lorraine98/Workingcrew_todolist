@@ -49,3 +49,6 @@ form {
   justify-content: space-between;
   margin-bottom: 40px;
 }
+.line {
+  text-decoration: line-through;
+}

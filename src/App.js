@@ -6,6 +6,25 @@ import { setItem } from "./storage.js";
 
 export default function App({ $target, initialState }) {
   this.$target = $target;
+  this.state = initialState;
+
+  this.setState = (nextState) => {
+    this.state = { ...nextState };
+    const todos = [...this.state.todos];
+    todoListComp.setState({ todos });
+    setItem("todos", JSON.stringify(todos));
+  };
+
+  this.toggleTodo = (id) => {
+    const todo = this.state.todos.find((t) => t.id === id);
+    todo.isCompleted = !todo.isCompleted;
+    this.setState({ todos: [...this.state.todos] });
+  };
+
+  this.addTodo = (text) => {
+    const newTodos = [...this.state.todos, createTodoItem(text)];
+    this.setState({ todos: newTodos });
+  };
 
   new DateTime({
     $target: document.querySelector(".date-time"),
@@ -17,21 +36,20 @@ export default function App({ $target, initialState }) {
 
   new TodoForm({
     $target,
-    onSubmit: (text) => {
-      console.log("todoList: ", todoList);
-      const nextState = [
-        ...todoList.state,
-        {
-          text,
-        },
-      ];
-      todoList.setState(nextState);
-      setItem("todos", JSON.stringify(nextState));
-    },
+    onSubmit: (text) => this.addTodo(text),
   });
 
-  const todoList = new TodoList({
+  const todoListComp = new TodoList({
     $target,
-    initialState,
+    initialState: { todos: [...this.state.todos] },
+    toggleTodo: (id) => this.toggleTodo(id),
   });
+}
+
+function createTodoItem(text) {
+  return {
+    id: Date.now(),
+    isCompleted: false,
+    text,
+  };
 }

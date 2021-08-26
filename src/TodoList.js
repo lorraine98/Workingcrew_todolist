@@ -1,26 +1,61 @@
-import TodoItem from "./TodoItem.js";
+/*
+  
+   State
 
-export default function TodoList({ $target, initialState }) {
+   {todos: TodoItem[] }
+
+   TodoItem
+    {
+     id: number, 
+     text: string, 
+     completed: boolean 
+    }
+  
+ */
+export default function TodoList({ $target, initialState, toggleTodo }) {
   const $todoList = document.createElement("div");
+  this.state = initialState;
   $target.appendChild($todoList);
 
-  this.state = initialState;
-
   this.setState = (nextState) => {
-    this.state = nextState;
+    this.state = { ...nextState };
     this.render();
   };
 
+  const onClickTodos = (e) => {
+    const $todo = e.target.closest(".todo-container");
+    if (!$todo) {
+      return;
+    }
+
+    const id = +$todo.dataset.id;
+    if (e.target.closest(".todo-toggle")) {
+      toggleTodo(id);
+    }
+  };
+
+  $todoList.addEventListener("click", onClickTodos);
+
   this.render = () => {
+    const { todos } = this.state;
     $todoList.innerHTML = `
-                ${this.state
+                ${todos
                   .map(
-                    ({ text }) => `
-                  <ul class="todo-container fontMedium">
-                    <div>
-                      <span class="material-icons-outlined toggleBtn"> radio_button_unchecked </span>
-                      <li class="todo">${text}</li>
-                    </div>
+                    ({ id, isCompleted, text }) =>
+                      `
+                  <ul class="todo-container fontMedium" data-id=${id}>
+                    <label class="todo-toggle">
+                      <span class="material-icons-outlined"> 
+                      ${
+                        isCompleted
+                          ? "check_circle_outline"
+                          : "radio_button_unchecked"
+                      }
+                      </span>
+                      <li class="todo ${isCompleted ? "line" : ""}">
+                        ${text}
+                      </li>
+                    </label>
                     <div>
                       <span class="material-icons-outlined"> edit </span>
                       <span class="material-icons-outlined"> delete </span>
@@ -34,5 +69,3 @@ export default function TodoList({ $target, initialState }) {
 
   this.render();
 }
-
-
