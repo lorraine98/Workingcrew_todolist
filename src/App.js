@@ -24,19 +24,23 @@ export default function App({ $target, initialState }) {
   this.addTodo = (text) => {
     const newTodos = [...this.state.todos, createTodoItem(text)];
     this.setState({ todos: newTodos });
+    counterComp.setState({ todoCount: newTodos.length });
   };
 
   new DateTime({
     $target: document.querySelector(".date-time"),
   });
 
-  new Counter({
+  const counterComp = new Counter({
     $target: document.querySelector(".counter"),
+    initialState: { todoCount: this.state.todos.length ?? 0 },
   });
 
   new TodoForm({
     $target,
-    onSubmit: (text) => this.addTodo(text),
+    onSubmit: (text) => {
+      this.addTodo(text), todoCount++;
+    },
   });
 
   const todoListComp = new TodoList({

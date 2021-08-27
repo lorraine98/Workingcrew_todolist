@@ -1,10 +1,28 @@
-export default function Counter({ $target }) {
+export default function Counter({ $target, initialState }) {
   this.$target = $target;
+  this.state = initialState;
+
+  this.setState = (nextState) => {
+    this.validationState(nextState);
+    this.state = { ...nextState };
+    this.render();
+  };
+
+  this.validationState = (state) => {
+    if (typeof state?.todoCount !== "number") {
+      throw new Error("State must have a type of number");
+    }
+  };
 
   this.render = () => {
+    const { todoCount } = this.state;
     this.$target.innerHTML = `
-        <span>얼마 안남았어요</span>
-        <span>3</span>
+        ${
+          todoCount < 3
+            ? `<span>얼마 안남았어요</span>`
+            : `<span>오늘도 열심히!</span>`
+        }     
+        <span>${todoCount}</span>
     `;
   };
 
