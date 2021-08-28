@@ -1,3 +1,18 @@
+.todos-container {
+  overflow-y: auto;
+  height: 380px;
+}
+.todos-container::-webkit-scrollbar {
+  width: 10px;
+}
+.todos-container::-webkit-scrollbar-thumb {
+  background-color: var(--green);
+  border-radius: 10px;
+}
+.todos-container::-webkit-scrollbar-track {
+  background-color: whitesmoke;
+  border-radius: 10px;
+}
 form {
   display: flex;
   justify-content: space-between;
@@ -61,4 +76,14 @@ form {
   color: gray;
   opacity: 0.3;
   margin-top: 120px;
+}
+.editInput {
+  border: none;
+  border-bottom: 1px solid gray;
+}
+
+@media (max-width: 425px) {
+  .counter {
+    font-size: 32px;
+  }
 }

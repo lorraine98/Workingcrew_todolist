@@ -16,3 +16,11 @@
   flex-direction: column;
   font-size: 20px;
 }
+@media (max-width: 425px) {
+  .date-time {
+    font-size: 32px;
+  }
+  .date__middle {
+    font-size: 15px;
+  }
+}
