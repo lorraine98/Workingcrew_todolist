@@ -9,10 +9,17 @@ export default function App({ $target, initialState }) {
   this.state = initialState;
 
   this.setState = (nextState) => {
+    this.validationState(nextState);
     this.state = { ...nextState };
     const todos = [...this.state.todos];
     todoListComp.setState({ todos });
     setItem("todos", JSON.stringify(todos));
+  };
+
+  this.validationState = (state) => {
+    if (!new.target) {
+      throw new Error("State must have new");
+    }
   };
 
   this.toggleTodo = (id) => {
@@ -36,9 +43,7 @@ export default function App({ $target, initialState }) {
     counterComp.setState({ todoCount: newTodos.length });
   };
 
-  this.editTodo =(target) => {
-    
-  }
+  this.editTodo = (target) => {};
 
   new DateTime({
     $target: document.querySelector(".date-time"),
