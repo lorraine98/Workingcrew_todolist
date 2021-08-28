@@ -16,14 +16,23 @@ export default function TodoList({
   initialState,
   toggleTodo,
   deleteTodo,
+  editTodo,
 }) {
   const $todoList = document.createElement("div");
   this.state = initialState;
   $target.appendChild($todoList);
 
   this.setState = (nextState) => {
+    this.validationState(nextState);
     this.state = { ...nextState };
     this.render();
+  };
+
+
+  this.validationState = (state) => {
+    if (typeof state?.todoCount !== "number") {
+      throw new Error("State must have a type of number");
+    }
   };
 
   const onClickTodos = (e) => {
@@ -38,6 +47,9 @@ export default function TodoList({
     }
     if (e.target.matches(".deleteBtn")) {
       deleteTodo($todo);
+    }
+    if (e.target.matches(".editBtn")) {
+      editTodo($todo);
     }
   };
 

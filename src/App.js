@@ -36,6 +36,10 @@ export default function App({ $target, initialState }) {
     counterComp.setState({ todoCount: newTodos.length });
   };
 
+  this.editTodo =(target) => {
+    
+  }
+
   new DateTime({
     $target: document.querySelector(".date-time"),
   });
@@ -57,6 +61,7 @@ export default function App({ $target, initialState }) {
     initialState: { todos: [...this.state.todos] },
     toggleTodo: (id) => this.toggleTodo(id),
     deleteTodo: (target) => this.deleteTodo(target),
+    editTodo: (target) => this.editTodo(target),
   });
 }
 
