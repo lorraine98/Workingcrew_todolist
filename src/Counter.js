@@ -9,8 +9,8 @@ export default function Counter({ $target, initialState }) {
   };
 
   this.validationState = (state) => {
-    if (!isArray(state?.todos)) {
-      throw new Error("State must have a type of array");
+    if (typeof state?.todoCount !== "number") {
+      throw new Error("State must have a type of number");
     }
   };
 

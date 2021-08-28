@@ -27,11 +27,9 @@ export default function TodoList({
     this.state = { ...nextState };
     this.render();
   };
-
-
   this.validationState = (state) => {
-    if (typeof state?.todoCount !== "number") {
-      throw new Error("State must have a type of number");
+    if (!Array.isArray(state?.todos)) {
+      throw new Error("State must have a type of array");
     }
   };
 
