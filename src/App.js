@@ -27,6 +27,15 @@ export default function App({ $target, initialState }) {
     counterComp.setState({ todoCount: newTodos.length });
   };
 
+  this.deleteTodo = (target) => {
+    const newTodos = [...this.state.todos].filter(function (todo) {
+      return todo.id != target.dataset.id;
+    });
+    target.remove();
+    this.setState({ todos: newTodos });
+    counterComp.setState({ todoCount: newTodos.length });
+  };
+
   new DateTime({
     $target: document.querySelector(".date-time"),
   });
@@ -39,7 +48,7 @@ export default function App({ $target, initialState }) {
   new TodoForm({
     $target,
     onSubmit: (text) => {
-      this.addTodo(text), todoCount++;
+      this.addTodo(text);
     },
   });
 
@@ -47,6 +56,7 @@ export default function App({ $target, initialState }) {
     $target,
     initialState: { todos: [...this.state.todos] },
     toggleTodo: (id) => this.toggleTodo(id),
+    deleteTodo: (target) => this.deleteTodo(target),
   });
 }
 

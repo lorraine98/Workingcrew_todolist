@@ -1,5 +1,4 @@
-/*
-  
+/*  
    State
 
    {todos: TodoItem[] }
@@ -12,7 +11,12 @@
     }
   
  */
-export default function TodoList({ $target, initialState, toggleTodo }) {
+export default function TodoList({
+  $target,
+  initialState,
+  toggleTodo,
+  deleteTodo,
+}) {
   const $todoList = document.createElement("div");
   this.state = initialState;
   $target.appendChild($todoList);
@@ -31,6 +35,9 @@ export default function TodoList({ $target, initialState, toggleTodo }) {
     const id = +$todo.dataset.id;
     if (e.target.closest(".todo-toggle")) {
       toggleTodo(id);
+    }
+    if (e.target.matches(".deleteBtn")) {
+      deleteTodo($todo);
     }
   };
 
@@ -61,8 +68,8 @@ export default function TodoList({ $target, initialState, toggleTodo }) {
                       </li>
                     </label>
                     <div>
-                      <span class="material-icons-outlined"> edit </span>
-                      <span class="material-icons-outlined"> delete </span>
+                      <span class="material-icons-outlined editBtn"> edit </span>
+                      <span class="material-icons-outlined deleteBtn"> delete </span>
                     </div>
                   </ul>
                 `
