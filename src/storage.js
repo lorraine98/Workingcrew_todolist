@@ -7,6 +7,7 @@ export const setItem = (key, value) => {
     console.log(error);
   }
 };
+
 export const getItem = (key, defaultValue) => {
   try {
     const storedValue = storage.getItem(key);

@@ -29,6 +29,7 @@ export default function TodoList({
     this.state = { ...nextState };
     this.render();
   };
+
   this.validationState = (state) => {
     if (!Array.isArray(state?.todos)) {
       throw new Error("State must have a type of array");
@@ -40,7 +41,6 @@ export default function TodoList({
     if (!$todoContainer) {
       return;
     }
-
     const id = +$todoContainer.dataset.id;
 
     if (e.target.closest(".todo-toggle")) {

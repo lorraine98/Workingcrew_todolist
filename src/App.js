@@ -27,6 +27,7 @@ export default function App({ $target, initialState }) {
     todo.isCompleted = !todo.isCompleted;
     this.setState({ todos: [...this.state.todos] });
 
+    //count completed todos for counting uncompleted count
     let completeCnt = 0;
     [...this.state.todos].filter((n) => {
       if (n.isCompleted === true) {
@@ -57,6 +58,7 @@ export default function App({ $target, initialState }) {
     });
     target.remove();
     this.setState({ todos: newTodos });
+    
     let completeCnt = 0;
     [...this.state.todos].filter((n) => {
       if (n.isCompleted === true) {
