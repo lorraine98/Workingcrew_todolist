@@ -13,7 +13,7 @@ export default function DateTime({ $target }) {
         </div>
         <span>${day}</span>
     </div>
-    <div class="time">${hours}:${minutes} ${hours > 12 ? "PM" : "AM"}</div>
+    <div class="time">${hours}:${minutes} ${hours > 12 ? "AM" : "PM"}</div>
 `;
   };
   this.render();
