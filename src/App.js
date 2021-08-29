@@ -26,6 +26,23 @@ export default function App({ $target, initialState }) {
     const todo = this.state.todos.find((t) => t.id === id);
     todo.isCompleted = !todo.isCompleted;
     this.setState({ todos: [...this.state.todos] });
+
+    let completeCnt = 0;
+    [...this.state.todos].filter((n) => {
+      if (n.isCompleted === true) {
+        completeCnt++;
+      }
+    });
+
+    if (todo.isCompleted) {
+      counterComp.setState({
+        todoCount: this.state.todos.length - completeCnt,
+      });
+    } else {
+      counterComp.setState({
+        todoCount: this.state.todos.length - completeCnt,
+      });
+    }
   };
 
   this.addTodo = (text) => {
@@ -40,7 +57,13 @@ export default function App({ $target, initialState }) {
     });
     target.remove();
     this.setState({ todos: newTodos });
-    counterComp.setState({ todoCount: newTodos.length });
+    let completeCnt = 0;
+    [...this.state.todos].filter((n) => {
+      if (n.isCompleted === true) {
+        completeCnt++;
+      }
+    });
+    counterComp.setState({ todoCount: newTodos.length - completeCnt });
   };
 
   this.editTodo = (id, text) => {
