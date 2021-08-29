@@ -86,9 +86,12 @@ export default function TodoList({
     const $editInput = $todoContainer.querySelector(".editInput");
     const editedText = $editInput.value;
     $editInput.classList.add("display-none");
-    const id = +$todoContainer.dataset.id;
-
-    editTodo(id, editedText);
+    if (editedText.length < 30) {
+      const id = +$todoContainer.dataset.id;
+      editTodo(id, editedText);
+    } else {
+      alert("30자 미만으로 작성해주세요!");
+    }
   };
 
   $todoList.addEventListener("click", onClickTodos);

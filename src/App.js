@@ -61,7 +61,11 @@ export default function App({ $target, initialState }) {
   new TodoForm({
     $target,
     onSubmit: (text) => {
-      this.addTodo(text);
+      if (text.length < 30) {
+        this.addTodo(text);
+      } else {
+        alert("30자 미만으로 작성해주세요!");
+      }
     },
   });
 

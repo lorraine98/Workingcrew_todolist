@@ -86,4 +86,11 @@ form {
   .counter {
     font-size: 32px;
   }
+  .todo-container {
+    font-size: 18px;
+    display: block;
+  }
+  .todos-container {
+    height: 450px;
+  }
 }
