@@ -16,7 +16,7 @@ export default function App({ $target, initialState }) {
     setItem("todos", JSON.stringify(todos));
   };
 
-  this.validationState = (state) => {
+  this.validationState = () => {
     if (!new.target) {
       throw new Error("State must have new");
     }
@@ -36,14 +36,18 @@ export default function App({ $target, initialState }) {
 
   this.deleteTodo = (target) => {
     const newTodos = [...this.state.todos].filter(function (todo) {
-      return todo.id != target.dataset.id;
+      return todo.id !== parseInt(target.dataset.id);
     });
     target.remove();
     this.setState({ todos: newTodos });
     counterComp.setState({ todoCount: newTodos.length });
   };
 
-  this.editTodo = (target) => {};
+  this.editTodo = (id, text) => {
+    const todo = this.state.todos.find((t) => t.id === id);
+    todo.text = text;
+    this.setState({ todos: [...this.state.todos] });
+  };
 
   new DateTime({
     $target: document.querySelector(".date-time"),
@@ -66,7 +70,7 @@ export default function App({ $target, initialState }) {
     initialState: { todos: [...this.state.todos] },
     toggleTodo: (id) => this.toggleTodo(id),
     deleteTodo: (target) => this.deleteTodo(target),
-    editTodo: (target) => this.editTodo(target),
+    editTodo: (id, text) => this.editTodo(id, text),
   });
 }
 

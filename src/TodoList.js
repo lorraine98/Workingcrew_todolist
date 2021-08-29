@@ -19,8 +19,10 @@ export default function TodoList({
   editTodo,
 }) {
   const $todoList = document.createElement("div");
+  $todoList.className = "todos-container";
   this.state = initialState;
-  $target.appendChild($todoList);
+  this.$target = $target;
+  this.$target.appendChild($todoList);
 
   this.setState = (nextState) => {
     this.validationState(nextState);
@@ -34,21 +36,59 @@ export default function TodoList({
   };
 
   const onClickTodos = (e) => {
-    const $todo = e.target.closest(".todo-container");
-    if (!$todo) {
+    const $todoContainer = e.target.closest(".todo-container");
+    if (!$todoContainer) {
       return;
     }
 
-    const id = +$todo.dataset.id;
+    const id = +$todoContainer.dataset.id;
+
     if (e.target.closest(".todo-toggle")) {
       toggleTodo(id);
     }
     if (e.target.matches(".deleteBtn")) {
-      deleteTodo($todo);
+      deleteTodo($todoContainer);
     }
     if (e.target.matches(".editBtn")) {
-      editTodo($todo);
+      this.startEditMode($todoContainer);
     }
+    if (e.target.matches(".doneBtn")) {
+      this.finishEditMode($todoContainer);
+    }
+  };
+
+  this.startEditMode = ($todoContainer) => {
+    const $editBtn = $todoContainer.querySelector(".editBtn");
+    $editBtn.classList.add("hidden");
+
+    const $todo = $todoContainer.querySelector(".todo");
+    const todoText = $todo.innerText;
+    $todo.classList.add("hidden");
+
+    const $doneBtn = $todoContainer.querySelector(".doneBtn");
+    $doneBtn.classList.remove("display-none");
+
+    const $editInput = $todoContainer.querySelector(".editInput");
+    $editInput.value = todoText;
+    $editInput.classList.remove("display-none");
+  };
+
+  this.finishEditMode = ($todoContainer) => {
+    const $editBtn = $todoContainer.querySelector(".editBtn");
+    $editBtn.classList.remove("hidden");
+
+    const $todo = $todoContainer.querySelector(".todo");
+    $todo.classList.remove("hidden");
+
+    const $doneBtn = $todoContainer.querySelector(".doneBtn");
+    $doneBtn.classList.add("display-none");
+
+    const $editInput = $todoContainer.querySelector(".editInput");
+    const editedText = $editInput.value;
+    $editInput.classList.add("display-none");
+    const id = +$todoContainer.dataset.id;
+
+    editTodo(id, editedText);
   };
 
   $todoList.addEventListener("click", onClickTodos);
@@ -65,21 +105,23 @@ export default function TodoList({
                     ({ id, isCompleted, text }) =>
                       `
                   <ul class="todo-container fontMedium" data-id=${id}>
-                    <label class="todo-toggle">
-                      <span class="material-icons-outlined"> 
+                    <label>
+                      <span class="material-icons-outlined todo-toggle"> 
                       ${
                         isCompleted
                           ? "check_circle_outline"
                           : "radio_button_unchecked"
                       }
-                      </span>
+                      </span> 
                       <li class="todo ${isCompleted ? "line" : ""}">
-                        ${text}
+                          ${text}
                       </li>
+                      <input value="" class="editInput fontMedium display-none">
                     </label>
                     <div>
-                      <span class="material-icons-outlined editBtn"> edit </span>
-                      <span class="material-icons-outlined deleteBtn"> delete </span>
+                      <span class="material-icons-outlined editBtn">edit</span>
+                      <span class="material-icons-outlined doneBtn display-none">done</span>
+                      <span class="material-icons-outlined deleteBtn">delete</span>
                     </div>
                   </ul>
                 `
@@ -87,6 +129,5 @@ export default function TodoList({
                   .join("")}
         `;
   };
-
   this.render();
 }
