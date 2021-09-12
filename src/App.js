@@ -5,7 +5,6 @@ import TodoList from "./TodoList.js";
 import { setItem } from "./storage.js";
 
 export default function App({ $target, initialState }) {
-  this.$target = $target;
   this.state = initialState;
 
   this.setState = (nextState) => {
@@ -28,22 +27,17 @@ export default function App({ $target, initialState }) {
     this.setState({ todos: [...this.state.todos] });
 
     //count completed todos for counting uncompleted count
-    let completeCnt = 0;
-    [...this.state.todos].filter((n) => {
-      if (n.isCompleted === true) {
-        completeCnt++;
-      }
+    const completeCnt = [...this.state.todos].filter(
+      (n) => n.isCompleted
+    ).length;
+    const todoLength = this.state.todos.length;
+    counterComp.setState({
+      todoCount: todoLength - completeCnt,
     });
 
-    if (todo.isCompleted) {
-      counterComp.setState({
-        todoCount: this.state.todos.length - completeCnt,
-      });
-    } else {
-      counterComp.setState({
-        todoCount: this.state.todos.length - completeCnt,
-      });
-    }
+    counterComp.setState({
+      todoCount: todoLength - completeCnt,
+    });
   };
 
   this.addTodo = (text) => {
@@ -53,18 +47,14 @@ export default function App({ $target, initialState }) {
   };
 
   this.deleteTodo = (target) => {
-    const newTodos = [...this.state.todos].filter(function (todo) {
+    const $todos = this.state.todos;
+    const newTodos = [...$todos].filter((todo) => {
       return todo.id !== parseInt(target.dataset.id);
     });
     target.remove();
     this.setState({ todos: newTodos });
-    
-    let completeCnt = 0;
-    [...this.state.todos].filter((n) => {
-      if (n.isCompleted === true) {
-        completeCnt++;
-      }
-    });
+    const completeCnt = [...$todos].filter((n) => n.isCompleted).length;
+
     counterComp.setState({ todoCount: newTodos.length - completeCnt });
   };
 
@@ -86,7 +76,8 @@ export default function App({ $target, initialState }) {
   new TodoForm({
     $target,
     onSubmit: (text) => {
-      if (text.length < 30) {
+      const limitTextLength = 30;
+      if (text.length < limitTextLength) {
         this.addTodo(text);
       } else {
         alert("30자 미만으로 작성해주세요!");

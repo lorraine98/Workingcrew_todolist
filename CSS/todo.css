@@ -1,6 +1,6 @@
 .todos-container {
   overflow-y: auto;
-  height: 380px;
+  height: 420px;
 }
 .todos-container::-webkit-scrollbar {
   width: 10px;

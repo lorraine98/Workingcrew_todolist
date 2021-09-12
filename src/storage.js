@@ -10,14 +10,8 @@ export const setItem = (key, value) => {
 
 export const getItem = (key, defaultValue) => {
   try {
-    const storedValue = storage.getItem(key);
-
-    if (storedValue) {
-      return JSON.parse(storedValue);
-    }
-    return defaultValue;
-  } catch (error) {
-    console.log(error);
+    return JSON.parse(storage.getItem(key)) ?? defaultValue;
+  } catch (e) {
     return defaultValue;
   }
 };
