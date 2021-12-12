@@ -1,7 +1,7 @@
 # workingcrew_todolist
 
 ### 일정을 추가하고 삭제할 수 있는 todolist 입니다.
-자세한 설명은[ [요기]](https://www.notion.so/hysoung/TodoList-250774c91193474d907806e163cfcab7)를 참고해주세요</br>
+자세한 설명은[ [요기]](https://hysoung.notion.site/To-do-List-3c98c7b55ae6472eab0425d1d650f30e)를 참고해주세요</br>
 
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/61550839/131253849-1dcddd7f-2685-46d9-8038-1fa8e4aeb394.gif)
 
